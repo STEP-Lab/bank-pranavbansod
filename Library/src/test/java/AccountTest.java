@@ -10,8 +10,8 @@ public class AccountTest {
     private Account account1;
 
     @Before
-    public void setUp() throws Exception, MinimumBalanceException {
-        account1 = new Account("1234", 1000);
+    public void setUp() throws Exception, MinimumBalanceException, InvalidAccountNumberException {
+        account1 = new Account("1234-1234", 1000);
     }
 
     @Test
@@ -21,17 +21,17 @@ public class AccountTest {
 
     @Test
     public void checkAccountNumber(){
-        assertThat(account1.getAccountNumber(),is("1234"));
+        assertThat(account1.getAccountNumber(),is("1234-1234"));
     }
 
     @Test(expected = MinimumBalanceException.class)
-    public void checkMinimumBalance() throws MinimumBalanceException {
-        new Account("1234", 200);
+    public void checkMinimumBalance() throws MinimumBalanceException, InvalidAccountNumberException {
+        new Account("1234-7823", 200);
     }
 
     @Test
-    public void withdraw() throws MinimumBalanceException {
-        Account account = new Account("1234-5678", 5000);
+    public void withdraw() throws MinimumBalanceException, InvalidAccountNumberException {
+        Account account = new Account("1237-8678", 5000);
         account.withdraw(1000);
         assertThat(account.getBalance(),is(4000.0));
     }
