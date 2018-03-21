@@ -1,0 +1,6 @@
+rootProject.name = 'BankApp'
+rootProject.name = 'BankApp'
+include 'Application'
+include 'Library'
+rootProject.name = 'BankApp'
+
