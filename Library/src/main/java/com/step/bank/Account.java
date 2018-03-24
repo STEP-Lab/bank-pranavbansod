@@ -1,5 +1,8 @@
+package com.step.bank;
+
 public class Account {
 
+    private static final int minimumBalance = 1000;
     private final String accountNumber;
     private double balance;
 
@@ -8,14 +11,18 @@ public class Account {
             throw new InvalidAccountNumberException();
         }
         this.accountNumber = accountNumber;
-        if(balance<1000){
-            throw new MinimumBalanceException();
-        }
+        validateMinimumBalance(balance);
         this.balance = balance;
     }
 
     public double getBalance() {
         return balance;
+    }
+
+    private void validateMinimumBalance(double balance) throws MinimumBalanceException {
+        if(balance< minimumBalance){
+            throw new MinimumBalanceException();
+        }
     }
 
     public String getAccountNumber() {

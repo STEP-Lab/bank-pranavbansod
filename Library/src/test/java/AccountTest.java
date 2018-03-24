@@ -1,3 +1,6 @@
+import com.step.bank.Account;
+import com.step.bank.InvalidAccountNumberException;
+import com.step.bank.MinimumBalanceException;
 import org.junit.Before;
 import org.junit.Test;
 
