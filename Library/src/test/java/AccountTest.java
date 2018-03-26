@@ -21,6 +21,12 @@ public class AccountTest {
     }
 
     @Test
+    public void getBalance() throws MinimumBalanceException {
+        Account acc = Account.createAccount(number,4000);
+        assertThat(acc.getBalance(),is(4000.0));
+    }
+
+    @Test
     public void checkBalance() {
         assertThat(account1.getBalance(),is(1000.0));
     }
@@ -49,4 +55,6 @@ public class AccountTest {
         account1.withdraw(500);
         assertThat(account1.getBalance(),is(1000.0));
     }
+
+
 }
