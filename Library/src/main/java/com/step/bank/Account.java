@@ -6,9 +6,8 @@ public class Account {
     private final AccountNumber accountNumber;
     private double balance;
 
-    public Account(AccountNumber accountNumber, int balance) throws MinimumBalanceException {
+    public Account(AccountNumber accountNumber, double balance)  {
         this.accountNumber = accountNumber;
-        validateMinimumBalance(balance);
         this.balance = balance;
     }
 
@@ -16,7 +15,7 @@ public class Account {
         return balance;
     }
 
-    private void validateMinimumBalance(double balance) throws MinimumBalanceException {
+    private static void validateMinimumBalance(double balance) throws MinimumBalanceException {
         if(balance< minimumBalance){
             throw new MinimumBalanceException();
         }
@@ -31,5 +30,10 @@ public class Account {
             throw new MinimumBalanceException();
         }
         balance -= amount;
+    }
+
+    public static Account createAccount(AccountNumber number, int balance) throws MinimumBalanceException {
+        validateMinimumBalance(balance);
+        return new Account(number,balance);
     }
 }

@@ -12,15 +12,16 @@ import static org.junit.Assert.assertThat;
 public class AccountTest {
 
     private Account account1;
+    private AccountNumber number;
 
     @Before
     public void setUp() throws Exception, MinimumBalanceException, InvalidAccountNumberException {
-        AccountNumber number =  AccountNumber.createAccountNumber("1234-1234");
-        account1 = new Account(number, 1000);
+        number =  AccountNumber.createAccountNumber("1234-1234");
+        account1 =  Account.createAccount(number, 1000);
     }
 
     @Test
-    public void checkBalance(){
+    public void checkBalance() {
         assertThat(account1.getBalance(),is(1000.0));
     }
 
@@ -32,13 +33,13 @@ public class AccountTest {
     @Test(expected = MinimumBalanceException.class)
     public void checkMinimumBalance() throws MinimumBalanceException, InvalidAccountNumberException {
         AccountNumber number =  AccountNumber.createAccountNumber("1234-1234");
-        new Account(number, 200);
+        Account.createAccount(number, 200);
     }
 
     @Test
     public void withdraw() throws MinimumBalanceException, InvalidAccountNumberException {
         AccountNumber number =  AccountNumber.createAccountNumber("1234-1234");
-        Account account = new Account(number, 5000);
+        Account account = Account.createAccount(number, 5000);
         account.withdraw(1000);
         assertThat(account.getBalance(),is(4000.0));
     }
