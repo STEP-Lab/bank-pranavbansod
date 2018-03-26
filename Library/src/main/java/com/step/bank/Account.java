@@ -3,13 +3,10 @@ package com.step.bank;
 public class Account {
 
     private static final int minimumBalance = 1000;
-    private final String accountNumber;
+    private final AccountNumber accountNumber;
     private double balance;
 
-    public Account(String accountNumber, int balance) throws MinimumBalanceException, InvalidAccountNumberException {
-        if(!accountNumber.matches("^\\d{4}-\\d{4}$")){
-            throw new InvalidAccountNumberException();
-        }
+    public Account(AccountNumber accountNumber, int balance) throws MinimumBalanceException {
         this.accountNumber = accountNumber;
         validateMinimumBalance(balance);
         this.balance = balance;
@@ -26,7 +23,7 @@ public class Account {
     }
 
     public String getAccountNumber() {
-        return accountNumber;
+        return accountNumber.getAccountNumber();
     }
 
     public void withdraw(double amount) throws MinimumBalanceException {
